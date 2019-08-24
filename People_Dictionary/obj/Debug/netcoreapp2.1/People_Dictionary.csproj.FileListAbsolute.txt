@@ -1,0 +1,14 @@
+/Users/pieterdevries/Documents/Workspace/People_Dictionary/People_Dictionary/bin/Debug/netcoreapp2.1/People_Dictionary.deps.json
+/Users/pieterdevries/Documents/Workspace/People_Dictionary/People_Dictionary/bin/Debug/netcoreapp2.1/People_Dictionary.runtimeconfig.json
+/Users/pieterdevries/Documents/Workspace/People_Dictionary/People_Dictionary/bin/Debug/netcoreapp2.1/People_Dictionary.runtimeconfig.dev.json
+/Users/pieterdevries/Documents/Workspace/People_Dictionary/People_Dictionary/bin/Debug/netcoreapp2.1/People_Dictionary.dll
+/Users/pieterdevries/Documents/Workspace/People_Dictionary/People_Dictionary/bin/Debug/netcoreapp2.1/People_Dictionary.pdb
+/Users/pieterdevries/Documents/Workspace/People_Dictionary/People_Dictionary/obj/Debug/netcoreapp2.1/People_Dictionary.csprojAssemblyReference.cache
+/Users/pieterdevries/Documents/Workspace/People_Dictionary/People_Dictionary/obj/Debug/netcoreapp2.1/People_Dictionary.csproj.CoreCompileInputs.cache
+/Users/pieterdevries/Documents/Workspace/People_Dictionary/People_Dictionary/obj/Debug/netcoreapp2.1/People_Dictionary.RazorAssemblyInfo.cache
+/Users/pieterdevries/Documents/Workspace/People_Dictionary/People_Dictionary/obj/Debug/netcoreapp2.1/People_Dictionary.RazorAssemblyInfo.cs
+/Users/pieterdevries/Documents/Workspace/People_Dictionary/People_Dictionary/obj/Debug/netcoreapp2.1/People_Dictionary.AssemblyInfoInputs.cache
+/Users/pieterdevries/Documents/Workspace/People_Dictionary/People_Dictionary/obj/Debug/netcoreapp2.1/People_Dictionary.AssemblyInfo.cs
+/Users/pieterdevries/Documents/Workspace/People_Dictionary/People_Dictionary/obj/Debug/netcoreapp2.1/People_Dictionary.RazorTargetAssemblyInfo.cache
+/Users/pieterdevries/Documents/Workspace/People_Dictionary/People_Dictionary/obj/Debug/netcoreapp2.1/People_Dictionary.dll
+/Users/pieterdevries/Documents/Workspace/People_Dictionary/People_Dictionary/obj/Debug/netcoreapp2.1/People_Dictionary.pdb

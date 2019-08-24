@@ -1,0 +1,28 @@
+﻿<Properties StartupConfiguration="{409DE981-8FAE-45BA-8F74-C20C6DD0922A}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/ValuesController.cs">
+    <Files>
+      <File FileName="Controllers/ValuesController.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="People_Dictionary" expanded="True">
+            <Node name="People_Dictionary" expanded="True">
+              <Node name="Controllers" expanded="True">
+                <Node name="ValuesController.cs" selected="True" />
+              </Node>
+              <Node name="Properties" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.People__Dictionary FirstBuild="True" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
