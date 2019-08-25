@@ -20,22 +20,25 @@ namespace People_Dictionary.Controllers
         /// GET: api/people
         ///
         /// A get request for getting all the people from the database. You will
-        /// probably want to do some pagination but if you need all the users you can get that here.
+        /// probably want to use pagination.
         ///
         /// WARNING:
         /// A person that has an active value of false will not be returned.
         /// 
         /// </summary>
+        /// <param name="limit">The max amount of items you want to return as integer.</param>
+        /// <param name="offset">The amount of items you want to skip as integer.</param>
         /// <returns>A Json serialized string of all the people.</returns>
-        [HttpGet]
-        public string Get()
+        ///
+        [HttpGet("{limit}/{offset}")]
+        public string Get(int limit = 10, int offset = 0)
         {
             List<People> allPeople = new List<People>();
 
             using (var context = new PeopleContext())
             {
                 // Get all the people from the database.
-                allPeople = context.People.Where(x => x.Active == true).ToList();
+                allPeople = context.People.Where(x => x.Active == true).Skip(offset).Take(limit).ToList();
             }
 
             // Convert the list of people to a Json representation.
