@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Text;
 using Microsoft.AspNetCore.Mvc;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+using Microsoft.EntityFrameworkCore;
+using People_Dictionary.Classes;
 
 namespace People_Dictionary.Controllers
 {
@@ -15,7 +13,20 @@ namespace People_Dictionary.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            List<string> names = new List<string>();
+
+            using (var context = new PeopleContext())
+            {
+                DbSet<People> people = context.People;
+                foreach (var person in people)
+                {
+                    var data = new StringBuilder();
+                    names.Add(person.FirstName);
+  
+                }
+            }
+
+            return names.ToArray();
         }
 
         // GET api/values/5
