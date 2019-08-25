@@ -1,6 +1,12 @@
 ﻿using System;
 namespace People_Dictionary.Classes
 {
+    /// <summary>
+    /// This is the class for the people and will be used for entity framework to
+    /// use.
+    ///
+    /// The names of the properties match the same as the database so entity framework knows how to map it.
+    /// </summary>
     public class People
     {
         public int Id { get; set; }
