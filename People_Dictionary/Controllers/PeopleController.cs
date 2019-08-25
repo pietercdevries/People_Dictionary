@@ -34,8 +34,22 @@ namespace People_Dictionary.Controllers
         /// <returns>A Json serialized string of all the people.</returns>
         ///
         [HttpGet("{limit}/{offset}")]
-        public string Get(int limit = 10, int offset = 0)
+        public string Get(int limit, int offset)
         {
+            // Set some default values and make sure we do not have negative values.
+            if (limit <= 0)
+            {
+                // We want at least one result.
+                limit = 1;
+            }
+
+            // Fix the issue if we gave a negative of items to skip.
+            if(offset < 0)
+            {
+                // We can not skip less than 0.
+                offset = 0;
+            }
+
             List<People> allPeople = new List<People>();
 
             using (var context = new PeopleContext())
@@ -51,6 +65,8 @@ namespace People_Dictionary.Controllers
             string jsonOutput = JsonConvert.SerializeObject(allPeople);             
             return jsonOutput;
         }
+
+        //TODO: Add a search with a filter for first and last name.
 
         /// <summary>
         /// GET api/people/5
