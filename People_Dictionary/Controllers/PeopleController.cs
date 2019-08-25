@@ -22,6 +22,9 @@ namespace People_Dictionary.Controllers
         /// A get request for getting all the people from the database. You will
         /// probably want to use pagination.
         ///
+        /// To know how many people we have in the database so you can generate the
+        /// amount of pages possible you can look at the header of the request at X-Total-Count.
+        ///
         /// WARNING:
         /// A person that has an active value of false will not be returned.
         /// 
@@ -37,6 +40,9 @@ namespace People_Dictionary.Controllers
 
             using (var context = new PeopleContext())
             {
+                // Add the total amount of people in the header.
+                Response.Headers.Add("X-Total-Count", context.People.Count().ToString());
+
                 // Get all the people from the database.
                 allPeople = context.People.Where(x => x.Active == true).Skip(offset).Take(limit).ToList();
             }
