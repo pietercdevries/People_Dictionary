@@ -20,7 +20,10 @@ namespace People_Dictionary.Controllers
         /// GET: api/people
         ///
         /// A get request for getting all the people from the database. You will
-        /// probably want to use pagination.
+        /// probably want to use pagination. And you can use query paramenters in the url
+        /// to specify the limit anf offset.
+        ///
+        /// You search for matches or partially in first name and last name by using then name query parameter.
         ///
         /// To know how many people we have in the database so you can generate the
         /// amount of pages possible you can look at the header of the request at X-Total-Count.
@@ -29,44 +32,54 @@ namespace People_Dictionary.Controllers
         /// A person that has an active value of false will not be returned.
         /// 
         /// </summary>
-        /// <param name="limit">The max amount of items you want to return as integer.</param>
-        /// <param name="offset">The amount of items you want to skip as integer.</param>
         /// <returns>A Json serialized string of all the people.</returns>
         ///
-        [HttpGet("{limit}/{offset}")]
-        public string Get(int limit, int offset)
+        [HttpGet()]
+        public string Get()
         {
-            // Set some default values and make sure we do not have negative values.
-            if (limit <= 0)
-            {
-                // We want at least one result.
-                limit = 1;
-            }
+            int.TryParse(HttpContext.Request.Query["limit"] , out int limit);
+            int.TryParse(HttpContext.Request.Query["offset"], out int offset);
+            string name = HttpContext.Request.Query["name"].ToString();
 
-            // Fix the issue if we gave a negative of items to skip.
-            if(offset < 0)
-            {
-                // We can not skip less than 0.
-                offset = 0;
-            }
-
-            List<People> allPeople = new List<People>();
+            List<People> people = new List<People>();
 
             using (var context = new PeopleContext())
             {
-                // Add the total amount of people in the header.
-                Response.Headers.Add("X-Total-Count", context.People.Count().ToString());
+                // We want to store the query and so we can build it along the way.
+                IEnumerable<People> query = null;
 
-                // Get all the people from the database.
-                allPeople = context.People.Where(x => x.Active == true).Skip(offset).Take(limit).ToList();
+                // Check to see if a name was set.
+                if (string.IsNullOrWhiteSpace(name))
+                {
+                    // We have found no name so we can start the query by returning everything but in-active memebers.
+                    query = context.People.Where(x => x.Active == true);
+                }
+                else
+                {
+                    // We have a name so we want to filter out only matching cases for the search criteria.
+                    query = context.People.Where(x => (x.FirstName.ToLower().Contains(name.ToLower()) || x.LastName.ToLower().Contains(name.ToLower())) && x.Active == true);
+                }
+
+                // Add the total amount of people in the header.
+                Response.Headers.Add("People-Total-Count", query.Count().ToString());
+
+                // If we do not specify a limit it will be zero so we want to return everything.
+                if (limit < 1)
+                {
+                    // We do not have a limit setup (not pagination) query all items and store them in variable.
+                    people = query.ToList();
+                }
+                else
+                {
+                    // Pagination numbers recceveid so lets do that.
+                    people = query.Skip(offset).Take(limit).ToList();
+                }                
             }
 
             // Convert the list of people to a Json representation.
-            string jsonOutput = JsonConvert.SerializeObject(allPeople);             
+            string jsonOutput = JsonConvert.SerializeObject(people);             
             return jsonOutput;
         }
-
-        //TODO: Add a search with a filter for first and last name.
 
         /// <summary>
         /// GET api/people/5
@@ -88,7 +101,7 @@ namespace People_Dictionary.Controllers
 
             using (var context = new PeopleContext())
             {
-                // Get the person by if and make sure it is actibe only.
+                // Get the person by if and make sure it is active only.
                 person = context.People.Where(x => x.Id == id && x.Active == true).SingleOrDefault();                
             }
 
