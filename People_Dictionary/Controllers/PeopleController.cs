@@ -37,6 +37,7 @@ namespace People_Dictionary.Controllers
         [HttpGet()]
         public string Get()
         {
+            // Get query parameters.
             int.TryParse(HttpContext.Request.Query["limit"] , out int limit);
             int.TryParse(HttpContext.Request.Query["offset"], out int offset);
             string name = HttpContext.Request.Query["name"].ToString();
