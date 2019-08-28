@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -78,6 +79,10 @@ namespace People_Dictionary.Controllers
                     people = query.Skip(offset).Take(limit).ToList();
                 }                
             }
+
+            // Simulate slowness for search
+            //int milliseconds = 3000;
+            //Thread.Sleep(milliseconds);
 
             // Convert the list of people to a Json representation.
             string jsonOutput = JsonConvert.SerializeObject(people);             
