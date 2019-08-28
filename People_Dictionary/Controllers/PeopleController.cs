@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using People_Dictionary.Classes;
@@ -34,7 +35,8 @@ namespace People_Dictionary.Controllers
         /// </summary>
         /// <returns>A Json serialized string of all the people.</returns>
         ///
-        [HttpGet()]
+        [HttpGet]
+        [EnableCors("CorsPolicy")]
         public string Get()
         {
             // Get query parameters.
@@ -96,6 +98,7 @@ namespace People_Dictionary.Controllers
         /// <param name="id">The id of the person you would like returned to you.</param>
         /// <returns>Returns a Json string including the person's details</returns>
         [HttpGet("{id}")]
+        [EnableCors("CorsPolicy")]
         public string Get(int id)
         {
             People person = null;
@@ -122,6 +125,7 @@ namespace People_Dictionary.Controllers
         /// </summary>
         /// <param name="value">The json string representing a people object.</param>
         [HttpPost]
+        [EnableCors("CorsPolicy")]
         public void Post([FromBody]string value)
         {
             People person = (People)JsonConvert.DeserializeObject(value);
@@ -145,6 +149,7 @@ namespace People_Dictionary.Controllers
         /// <param name="id">The id of the person in the database you want to edit.</param>
         /// <param name="value">The Json object string representation for updating the object.</param>
         [HttpPut("{id}")]
+        [EnableCors("CorsPolicy")]
         public void Put(int id, [FromBody]string value)
         {
             // Get the person that has the new information.
@@ -188,6 +193,7 @@ namespace People_Dictionary.Controllers
         /// </summary>
         /// <param name="id">The id of the person in the database you wish to remove.</param>
         [HttpDelete("{id}")]
+        [EnableCors("CorsPolicy")]
         public void Delete(int id)
         {
             using (var context = new PeopleContext())
