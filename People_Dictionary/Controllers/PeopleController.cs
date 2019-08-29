@@ -68,6 +68,7 @@ namespace People_Dictionary.Controllers
 
                 // Add the total amount of people in the header.
                 Response.Headers.Add("People-Total-Count", query.Count().ToString());
+                Response.Headers.Add("access-control-expose-headers", "content-disposition");
 
                 // If we do not specify a limit it will be zero so we want to return everything.
                 if (limit < 1)
