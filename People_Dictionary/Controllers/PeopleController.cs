@@ -43,6 +43,7 @@ namespace People_Dictionary.Controllers
             // Get query parameters.
             int.TryParse(HttpContext.Request.Query["limit"] , out int limit);
             int.TryParse(HttpContext.Request.Query["offset"], out int offset);
+            int.TryParse(HttpContext.Request.Query["speed"], out int speed);
             string name = HttpContext.Request.Query["name"].ToString();
 
             List<People> people = new List<People>();
@@ -81,8 +82,11 @@ namespace People_Dictionary.Controllers
             }
 
             // Simulate slowness for search
-            //int milliseconds = 3000;
-            //Thread.Sleep(milliseconds);
+            if (speed > -1)
+            {
+                int milliseconds = speed;
+                Thread.Sleep(milliseconds);
+            }            
 
             // Convert the list of people to a Json representation.
             string jsonOutput = JsonConvert.SerializeObject(people);             
