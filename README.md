@@ -1,6 +1,6 @@
 ## People Search API
 
-The people search api is a server application so serve data to the client. Using .net core 2.2 we can use the WebAPI to serve data. The data that is passed and received is JSON formatted. We use a Mysql database to store and retreive the data.
+The people search api is a server application to serve data to the client. Using .net core 2.2 we can use the WebAPI to serve data. The data that is passed and received is JSON formatted. We use a Mysql database to store and retreive the data.
 
 ## Code Example
 
@@ -253,7 +253,7 @@ namespace People_Dictionary.Controllers
 
 ## Motivation
 
-I created this api to demonstrate how you can server data to a client.
+I created this api to demonstrate how you can serve data to a client.
 
 ## Installation
 
@@ -284,7 +284,7 @@ CREATE TABLE `people` (
 
 You will need to change the database connection in the following file : **People_Dictionary/People_Dictionary/Classes/PeopleContext.cs**
 
-it will look like 
+It will look like:
 
 ```c#
 private const string ConnectionString = "server=localhost;port=3306;database=People_Search;Uid=root;Pwd=33monkeys";
@@ -292,16 +292,16 @@ private const string ConnectionString = "server=localhost;port=3306;database=Peo
 
 ## API Reference
 
-There are 4 HTTP methods that can be used, Get, Post, Put, Delete. With Get you can get a list of user. For example: http://localhost/api/people And you can also put an id on it to get a spesific user. for Example http://localhost/api/people/1
+There are 4 HTTP methods that can be used, Get, Post, Put, Delete. With Get you can get a list of users. For example: http://localhost/api/people And you can also put an id on it to get a spesific user. For example http://localhost/api/people/1
 
-Some fileters where added some we could do pagination and get search criteria.
+Some filters were added so we could do pagination and get search criteria.
 
 You can add the following query paramters to the Get request:
 
 1. limit - This is the max amount of people returned.
 2. offset - How many people to skip.
 3. speed - Simulate lowness by adding milliseconds of wait time.
-4. name - the first or last name you want to filter by.
+4. name - The first or last name you want to filter by.
 
 The post and put request will return success if it can add a user with out an error. If there is an error it will return a generic error.
 
