@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using Microsoft.AspNetCore.Cors;
@@ -132,18 +133,26 @@ namespace People_Dictionary.Controllers
         /// The Created Date and Updated Date fields are managed by the database and will not be saved.
         ///  
         /// </summary>
-        /// <param name="value">The json string representing a people object.</param>
+        /// <param name="person">The json string representing a people object.</param>
+        /// <returns> A tring will be returned and success if it succeeded</returns>
         [HttpPost]
         [EnableCors("CorsPolicy")]
-        public void Post([FromBody]string value)
+        public string Post([FromBody]People person)
         {
-            People person = (People)JsonConvert.DeserializeObject(value);
-
-            using (var context = new PeopleContext())
+            try
             {
-                context.People.Add(person);
-                context.SaveChanges();
-            }            
+                using (var context = new PeopleContext())
+                {
+                    context.People.Add(person);
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+
+            return "success";
         }
 
         /// <summary>
@@ -156,39 +165,47 @@ namespace People_Dictionary.Controllers
         /// 
         /// </summary>
         /// <param name="id">The id of the person in the database you want to edit.</param>
-        /// <param name="value">The Json object string representation for updating the object.</param>
+        /// <param name="updatedPerson">The Json object string representation for updating the object.</param>
+        /// <returns> A tring will be returned and success if it succeeded</returns>
         [HttpPut("{id}")]
         [EnableCors("CorsPolicy")]
-        public void Put(int id, [FromBody]string value)
+        public string Put(int id, [FromBody]People updatedPerson)
         {
-            // Get the person that has the new information.
-            People updatedPerson = (People)JsonConvert.DeserializeObject(value);
-
-            using (var context = new PeopleContext())
+            try
             {
-                // Get the person that we want to update.
-                People person = context.People.Where(x => x.Id == id).SingleOrDefault();
-
-                if(person != null)
+                using (var context = new PeopleContext())
                 {
-                    // We have a person so let's update the values.
-                    person.FirstName = updatedPerson.FirstName;
-                    person.LastName = updatedPerson.LastName;
-                    person.StreetAddress = updatedPerson.StreetAddress;
-                    person.StreetAddressAdditional = updatedPerson.StreetAddressAdditional;
-                    person.City = updatedPerson.City;
-                    person.State = updatedPerson.State;
-                    person.ZipCode = updatedPerson.ZipCode;
-                    person.DateOfBirth = updatedPerson.DateOfBirth;
-                    person.Interests = updatedPerson.Interests;
-                    person.AvatarUrl = updatedPerson.AvatarUrl;
-                    person.Active = updatedPerson.Active;
+                    // Get the person that we want to update.
+                    People person = context.People.Where(x => x.Id == id).SingleOrDefault();
 
-                    // Update the user.
-                    context.People.Update(person);
-                    context.SaveChanges();
+                    if(person != null)
+                    {
+                        // We have a person so let's update the values.
+                        person.FirstName = updatedPerson.FirstName;
+                        person.LastName = updatedPerson.LastName;
+                        person.StreetAddress = updatedPerson.StreetAddress;
+                        person.StreetAddressAdditional = updatedPerson.StreetAddressAdditional;
+                        person.City = updatedPerson.City;
+                        person.State = updatedPerson.State;
+                        person.ZipCode = updatedPerson.ZipCode;
+                        person.DateOfBirth = updatedPerson.DateOfBirth;
+                        person.Interests = updatedPerson.Interests;
+                        person.AvatarUrl = updatedPerson.AvatarUrl;
+                        person.Active = updatedPerson.Active;
+
+                        // Update the user.
+                        context.People.Update(person);
+                        context.SaveChanges();
+                    }
                 }
+
             }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+
+            return "success";
         }
         
         /// <summary>
