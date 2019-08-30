@@ -2,6 +2,8 @@
 
 The people search api is a server application to serve data to the client. Using .net core 2.2 we can use the WebAPI to serve data. The data that is passed and received is JSON formatted. We use a Mysql database to store and retreive the data.
 
+See: [https://people-dictionary.azurewebsites.net/api/people](https://people-dictionary.azurewebsites.net/) for a api example.
+
 ## Code Example
 
 ~~~c#
