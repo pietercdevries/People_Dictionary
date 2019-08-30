@@ -47,6 +47,7 @@ namespace People_Dictionary
                 app.UseHsts();
             }
 
+            app.UseFileServer();
             app.UseHttpsRedirection();
             app.UseMvc();
         }
