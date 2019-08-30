@@ -16,18 +16,19 @@ var DashboardController = function ($scope, $http) {
         }
 
         // Get the data and add the search value and teh desired speed you wish to return the data.
-        $http.get(server + "?name=" + searchValue + "&speed=" + $scope.speed)
+        $http.get(server + "?name=" + $scope.searchValue + "&speed=" + $scope.speed)
             .then(onSuccess, onError);
     };
 
     // This will be called when the server returns are response.
-    var onSuccess = function(response) {
+    var onSuccess = function (response) {
+        $loading.hide();
+
         // Set the people in the scope for the table.
         $scope.people = response.data;
 
         // Set the auto complete data. We do this every time in case a user was added by another application.
         addAutocompleteOptions(response.data);
-        $loading.hide();
     };
 
     // This is will be used for then the http web request fails.
