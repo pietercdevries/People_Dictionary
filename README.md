@@ -264,7 +264,7 @@ To install the api you need to publish the items in the publish folder on a .net
 Table generation code:
 
 ```sql
-CREATE TABLE `people` (
+CREATE TABLE `People` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `FirstName` varchar(20) NOT NULL,
   `LastName` varchar(20) NOT NULL,
