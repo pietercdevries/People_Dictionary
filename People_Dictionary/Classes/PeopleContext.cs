@@ -4,7 +4,7 @@ namespace People_Dictionary.Classes
 {
     public class PeopleContext : DbContext
     {
-        private const string ConnectionString = "server=localhost;port=3306;database=People_Search;Uid=root;Pwd=33monkeys";
+        private const string ConnectionString = "server=database-1.cbyec5csehre.us-west-2.rds.amazonaws.com;port=3306;database=People_Search;Uid=pieter;Pwd=33monkeys";
 
         public DbSet<People> People { get; set; }
 
