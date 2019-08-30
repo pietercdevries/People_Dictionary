@@ -38,7 +38,6 @@ namespace People_Dictionary.Controllers
         /// <returns>A Json serialized string of all the people.</returns>
         ///
         [HttpGet]
-        [EnableCors("CorsPolicy")]
         public string Get()
         {
             // Get query parameters.
@@ -109,7 +108,6 @@ namespace People_Dictionary.Controllers
         /// <param name="id">The id of the person you would like returned to you.</param>
         /// <returns>Returns a Json string including the person's details</returns>
         [HttpGet("{id}")]
-        [EnableCors("CorsPolicy")]
         public string Get(int id)
         {
             People person = null;
@@ -137,7 +135,6 @@ namespace People_Dictionary.Controllers
         /// <param name="person">The json string representing a people object.</param>
         /// <returns> A tring will be returned and success if it succeeded</returns>
         [HttpPost]
-        [EnableCors("CorsPolicy")]
         public string Post([FromBody]People person)
         {
             try
@@ -169,7 +166,6 @@ namespace People_Dictionary.Controllers
         /// <param name="updatedPerson">The Json object string representation for updating the object.</param>
         /// <returns> A tring will be returned and success if it succeeded</returns>
         [HttpPut("{id}")]
-        [EnableCors("CorsPolicy")]
         public string Put(int id, [FromBody]People updatedPerson)
         {
             try
@@ -220,7 +216,6 @@ namespace People_Dictionary.Controllers
         /// </summary>
         /// <param name="id">The id of the person in the database you wish to remove.</param>
         [HttpDelete("{id}")]
-        [EnableCors("CorsPolicy")]
         public void Delete(int id)
         {
             using (var context = new PeopleContext())
